@@ -21,7 +21,7 @@
                         <label for="form-check-label">Completed</label>
                     </div>
                     <div v-if="task.author._id === $store.state.userId" class="d-flex justify-content-between">
-                        <router-link type="button" tag="button" class="card-link btn btn-primary" :to="{name: 'task-edit', params: { id: task._id }}" exact>Edit</router-link>
+                        <router-link type="button" tag="button" class="card-link btn btn-primary" :to="{name: 'tasks-edit', params: { id: task._id }}" exact>Edit</router-link>
                         <a @click.prevent="currentTaskId = task._id" href="#" class="card-link btn btn-danger" v-b-modal.modal1>Delete</a>
                     </div>
                 </div>
@@ -33,8 +33,8 @@
                         <h3>Hello From My Modal!</h3>
                     </div>
                     <div slot="modal-footer" class="w-100 text-right">
-                        <b-btn slot="md" class="mr-1" variant="danger" block @click="deleteTask">Delete</b-btn>
-                        <b-btn slot="md" variant="secondary" block @click="cancelModal">Cancel</b-btn>
+                        <b-btn slot="md" class="mr-1" variant="danger" @click="deleteTask">Delete</b-btn>
+                        <b-btn slot="md" variant="secondary" @click="cancelModal">Cancel</b-btn>
                     </div>
                 </b-modal>
             </div>

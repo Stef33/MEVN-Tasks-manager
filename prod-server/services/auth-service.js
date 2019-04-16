@@ -55,5 +55,5 @@ function getUserId(req) {
     if (!token) {
         return null;
     }
-    return token.user.username;
+    return token.user.id;
 }

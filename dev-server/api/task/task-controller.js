@@ -71,7 +71,9 @@ export function remove(req, res) {
             return res.status(403).json({ message: 'Not allowed to delete another user\'s task' })
         }
         Task.deleteOne({ _id: req.params.id }, (error) => {
-            return res.status(500).json()
+            if (error) {
+                return res.status(500).json()
+            }
         })
         return res.status(204).json()
     })
@@ -79,7 +81,7 @@ export function remove(req, res) {
 
 export function show(req, res) {
     // GET TASK BY ID
-    Task.findOne({ _id: req.params.id }, (error, tasks) => {
+    Task.findOne({ _id: req.params.id }, (error, task) => {
         if (error) {
             return res.status(500).json()
         }

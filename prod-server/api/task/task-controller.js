@@ -97,7 +97,9 @@ function remove(req, res) {
             return res.status(403).json({ message: 'Not allowed to delete another user\'s task' });
         }
         _taskModel2.default.deleteOne({ _id: req.params.id }, function (error) {
-            return res.status(500).json();
+            if (error) {
+                return res.status(500).json();
+            }
         });
         return res.status(204).json();
     });
@@ -105,7 +107,7 @@ function remove(req, res) {
 
 function show(req, res) {
     // GET TASK BY ID
-    _taskModel2.default.findOne({ _id: req.params.id }, function (error, tasks) {
+    _taskModel2.default.findOne({ _id: req.params.id }, function (error, task) {
         if (error) {
             return res.status(500).json();
         }
